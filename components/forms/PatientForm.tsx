@@ -11,6 +11,10 @@ import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
+import { users } from "@/lib/appwrite.config";
+import { ID } from "node-appwrite";
+import { createUser } from "@/lib/actions/patient.actions";
+
 
 export enum FormFieldType {
   INPUT = "input",
@@ -50,15 +54,18 @@ const PatientForm = () => {
     try {
 
       // ========== User Data =============
-      const userData = {
+      const user = {
         name,
         email,
         phone,
       };
 
-      const user = await createUser(userData);
 
-      if (user) router.push(`/patients/${user.$id}/register`);
+
+      const newUser = await createUser(user);
+
+
+      if (newUser) router.push(`/patients/${newUser.$id}/register`);
 
     } catch (err) {
       console.log(err);

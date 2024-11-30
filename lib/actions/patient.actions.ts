@@ -8,14 +8,6 @@ export const createUser = async (user: CreateUserParams) => {
 
   try {
 
-
-    console.log({
-      email: user?.email,
-      phone: user?.phone,
-      name: user?.name,
-    });
-
-
     const newUser = await users.create(
       ID.unique(),
       user?.email,
@@ -27,11 +19,24 @@ export const createUser = async (user: CreateUserParams) => {
 
     return parseStringify(newUser);
   } catch (error: any) {
-    // if (error && error?.code === 409) {
-    //   const documents = await users.list([Query.equal("email", [user.email])]);
+    if (error && error?.code === 409) {
+      const documents = await users.list([Query.equal("email", [user.email])]);
 
-    //   return documents?.users[0];
-    // }
-    console.log(error);
+      return documents?.users[0];
+    }
   }
 };
+
+
+// Get the user
+
+export const getUser = async (userId: string) => {
+  try {
+    const user = await users.get(userId);
+    console.log(user);
+
+    return parseStringify(user)
+  } catch (error) {
+    console.log(error)
+  }
+}

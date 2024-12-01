@@ -17,6 +17,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "react-phone-number-input/style.css";
 import { Select, SelectContent, SelectTrigger, SelectValue } from "./ui/select";
 import { Textarea } from "./ui/textarea";
+import { Checkbox } from "./ui/checkbox";
 
 interface CustomProps {
   control: Control<any>;
@@ -78,13 +79,13 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
             disabled={props.disabled}
           />
         </FormControl>
-      )
+      );
 
     case FormFieldType.PHONE_INPUT:
       return (
         <div className="flex rounded-md border border-dark-500 input-phone bg-dark-400">
           <PhoneInput
-            defaultCountry="US"
+            defaultCountry="BD"
             placeholder={placeholder}
             international
             withCountryCallingCode
@@ -123,7 +124,7 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
       return (
         <FormControl>
           <Select onValueChange={field.onChange} defaultValue={field.value}>
-            <FormControl >
+            <FormControl>
               <SelectTrigger className="shad-select-trigger">
                 <SelectValue placeholder={placeholder} />
               </SelectTrigger>
@@ -137,6 +138,22 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
 
     case FormFieldType.SKELETON:
       return renderSkeletons ? renderSkeletons(field) : null;
+
+    case FormFieldType.CHECKBOX:
+      return (
+        <FormControl>
+          <div className="flex items-center gap-4">
+            <Checkbox
+              id={props.name}
+              checked={field.value}
+              onCheckedChange={field.onChange}
+            />
+            <label htmlFor={props.name} className="checkbox-label">
+              {props.label}
+            </label>
+          </div>
+        </FormControl>
+      );
 
     default:
       break;

@@ -345,22 +345,47 @@ const RegisterForm = ({ user }: { user: User }) => {
         />
         {/* ========== Identification Number ============= */}
 
-
         {/* ========== Identification Document Scan ============= */}
         <CustomFormField
-            fieldType={FormFieldType.SKELETON}
-            control={form.control}
-            name="identificationDocument"
-            label="Scan Copy of Identification Document"
-            renderSkeletons={(field) => (
-              <FormControl>
-                <FileUploader files={field.value} onChange={field.onChange} />
-              </FormControl>
-            )}
-          />
+          fieldType={FormFieldType.SKELETON}
+          control={form.control}
+          name="identificationDocument"
+          label="Scan Copy of Identification Document"
+          renderSkeletons={(field) => (
+            <FormControl>
+              <FileUploader files={field.value} onChange={field.onChange} />
+            </FormControl>
+          )}
+        />
         {/* ========== Identification Document Scan ============= */}
-
         {/* =========================== Identification & Verification ============================= */}
+
+        {/* =========================== Privacy & Consent ============================= */}
+        <section className="space-y-4">
+          <div className="mb-9 space-y-1">
+            <h2 className="sub-header">Consent & Privacy</h2>
+          </div>
+        </section>
+
+        <CustomFormField
+          fieldType={FormFieldType.CHECKBOX}
+          control={form.control}
+          name="treatmentConsent"
+          label="I Consent to Treatment"
+        />
+        <CustomFormField
+          fieldType={FormFieldType.CHECKBOX}
+          control={form.control}
+          name="disclosureConsent"
+          label="I Consent to Disclosure of Information"
+        />
+        <CustomFormField
+          fieldType={FormFieldType.CHECKBOX}
+          control={form.control}
+          name="privacyConsent"
+          label="I Consent to Privacy & Policy"
+        />
+        {/* =========================== Privacy & Consent ============================= */}
 
         {/* ========= Submit Button ================ */}
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>

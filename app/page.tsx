@@ -8,7 +8,7 @@ export default function Home() {
 
       {/* ============== TODO: OTP Verification ======================= */}
 
-      <section className="remove-scrollbar container my-auto">
+      <section className="remove-scrollbar container">
         <div className="sub-container max-w-[495px]">
           <Image
             src="/assets/icons/logo-full.svg"
@@ -21,7 +21,7 @@ export default function Home() {
           <PatientForm />
 
           {/* Home Page */}
-          <div className="text-14-regular mt-20 flex justify-between">
+          <div className="text-14-regular mt-20 flex justify-between pb-7">
             <p className="justify-items-end text-dark-600 xl:text-left">
               &copy; 2025 Care Pulse
             </p>

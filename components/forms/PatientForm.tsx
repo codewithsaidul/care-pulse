@@ -58,15 +58,11 @@ const PatientForm = () => {
 
       const newUser = await createUser(user);
 
-        console.log(newUser.$id)
       if (newUser) router.push(`/patients/${newUser.$id}/register`);
 
     } catch (err) {
       console.log(err);
     }
-
-    // ✅ This will be type-safe and validated.
-    // console.log(values);
   };
 
   return (

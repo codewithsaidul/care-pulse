@@ -3,10 +3,9 @@
 
 
 import { ID, Query } from "node-appwrite";
-import { databases, storage, users } from "../appwrite.config";
+import {  databases, storage, users } from "../appwrite.config";
 import { parseStringify } from "../utils";
 import { InputFile } from "node-appwrite/file";
-
 
 
 export const createUser = async (user: CreateUserParams) => {
@@ -40,6 +39,9 @@ export const getUser = async (userId: string) => {
   }
 };
 
+
+
+
 // Register a New Patient
 export const registerPatient = async ({
   identificationDocument,
@@ -64,27 +66,17 @@ export const registerPatient = async ({
     }
 
 
-    console.log(
-      {
-        identificationDocumentId: file?.$id || null,
-        identificationDocumentUrl: `${process.env
-          .NEXT_PUBLIC_ENDPOINT!}/storage/buckets/${process.env
-          .NEXT_PUBLIC_BUCKET_ID!}/files/${file?.$id}/view?project=${process.env
-          .NEXT_PUBLIC_PROJECT_ID!}`,
-        
-      }
-    )
+
 
     const patientCollection = await databases.createDocument(
       process.env.NEXT_PUBLIC_DATABASE_ID!,
       process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID!,
       ID.unique(),
       {
-        identificationDocumentId: file?.$id || null,
-        identificationDocumentUrl: `${process.env
-          .NEXT_PUBLIC_ENDPOINT!}/storage/buckets/${process.env
-          .NEXT_PUBLIC_BUCKET_ID!}/files/${file?.$id}/view?project=${process.env
-          .NEXT_PUBLIC_PROJECT_ID!}`,
+        identificationDocumentId: file?.$id ? file.$id : null,
+        identificationDocumentUrl: file?.$id
+          ? `${process.env.NEXT_PUBLIC_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${file.$id}/view??project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
+          : null,
         ...patient,
       }
     );
@@ -95,3 +87,24 @@ export const registerPatient = async ({
     console.log(error);
   }
 };
+
+
+
+// Get the Patient
+export const getPatient = async (userId: string) => {
+  try {
+    const patient = await databases.listDocuments(
+      process.env.NEXT_PUBLIC_DATABASE_ID!,
+      process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID!,
+      [
+        Query.equal('userId', userId)
+      ]
+    );
+
+
+    return parseStringify(patient.documents[0]);
+  } catch (error) {
+    console.log(error);
+  }
+};
+

@@ -59,14 +59,11 @@ const RegisterForm = ({ user }: { user: User }) => {
       identificationDocument: formData
     }
 
-    console.log("all patient data: ", patientData)
-
     //@ts-expect-error nothing
     const patient = await registerPatient(patientData);
 
-    console.log(patient)
 
-    if (patient) router.push(`/patients/${patient.$id}/new-appointment`);
+    if (patient) router.push(`/patients/${user.$id}/new-appointment`);
 
     
     try {
@@ -74,12 +71,10 @@ const RegisterForm = ({ user }: { user: User }) => {
       console.log(err);
     }
 
-    // ✅ This will be type-safe and validated.
-    // console.log(values);
+
   };
 
 
-  console.log(form.formState.errors)
 
   return (
     <Form {...form}>

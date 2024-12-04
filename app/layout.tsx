@@ -13,6 +13,11 @@ const fontSans = Plus_Jakarta_Sans({
 export const metadata: Metadata = {
   title: "Care Pulse",
   description: "A Health Care Management System",
+  keywords: ["healthcare", "management", "system"],
+  icons: {
+    icon: "/favicon.ico", // Path to your favicon
+    apple: "/favicon.ico", // Optional for Apple touch icon
+  },
 };
 
 export default function RootLayout({

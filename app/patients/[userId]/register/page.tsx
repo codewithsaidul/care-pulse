@@ -1,11 +1,11 @@
 import RegisterForm from "@/components/forms/RegisterForm";
 import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
-import Link from "next/link";
 
-const Register = async ({ params: {userId} }: SearchParamProps) => {
-    const user = await getUser(userId);
-    
+const Register = async ({ params }: SearchParamProps) => {
+  const userId = params.userId;
+  const user = await getUser(userId);
+
   return (
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">
@@ -20,15 +20,9 @@ const Register = async ({ params: {userId} }: SearchParamProps) => {
 
           <RegisterForm user={user} />
 
-          {/* Home Page */}
-          <div className="text-14-regular mt-20 flex justify-between pb-7">
-            <p className="justify-items-end text-dark-600 xl:text-left">
-              &copy; 2025 Care Pulse
-            </p>
-            <Link href="/?admin=true" className="text-green-500">
-              Admin
-            </Link>
-          </div>
+          <p className="copyright py-12">
+            &copy; 2025 Care Pulse
+          </p>
         </div>
       </section>
 

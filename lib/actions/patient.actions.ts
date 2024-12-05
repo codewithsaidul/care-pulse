@@ -28,17 +28,6 @@ export const createUser = async (user: CreateUserParams) => {
   }
 };
 
-// Get the user
-export const getUser = async (userId: string) => {
-  try {
-    const user = await users.get(userId);
-
-    return parseStringify(user);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 
 
 
@@ -48,8 +37,6 @@ export const registerPatient = async ({
   ...patient
 }: RegisterUserParams) => {
   try {
-
-    console.log("my patient registration: ", patient)
 
     let file;
     if (identificationDocument) {
@@ -81,8 +68,24 @@ export const registerPatient = async ({
       }
     );
 
-    // console.log("patient data:", patientCollection)
+
     return parseStringify(patientCollection);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+
+
+// Create a New Appointment 
+
+
+// Get the user
+export const getUser = async (userId: string) => {
+  try {
+    const user = await users.get(userId);
+
+    return parseStringify(user);
   } catch (error) {
     console.log(error);
   }

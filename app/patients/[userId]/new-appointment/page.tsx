@@ -3,9 +3,9 @@ import { getPatient } from "@/lib/actions/patient.actions";
 // import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 
-
 const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
-    const user = await getPatient(userId);
+  const patient = await getPatient(userId);
+  console.log(patient)
 
   return (
     <div className="flex h-screen max-h-screen">
@@ -19,7 +19,11 @@ const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
             className="mb-12 h-10 w-fit"
           />
 
-          <AppointmentForm  />
+          <AppointmentForm
+            patientId={patient?.$id}
+            userId={userId}
+            type="create"
+          />
 
           <p className="copyright py-12">&copy; 2025 Care Pulse</p>
         </div>
@@ -33,7 +37,7 @@ const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
         className="side-img max-w-[390px]"
       />
     </div>
-  )
-}
+  );
+};
 
-export default NewAppointment
+export default NewAppointment;

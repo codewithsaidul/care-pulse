@@ -3,7 +3,6 @@
 import {
   AlertDialog,
   AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -13,28 +12,60 @@ import {
 import {
   InputOTP,
   InputOTPGroup,
-  InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import { decryptKey, encryptKey } from "@/lib/utils";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 
 const PasskeyModal = () => {
   const router = useRouter();
+  const path = usePathname();
   const [open, setOpen] = useState(true);
   const [passkey, setPasskey] = useState("");
   const [error, setError] = useState("");
 
+  const encryptedKey =
+    typeof window !== "undefined"
+      ? window.localStorage.getItem("adminPasskey")
+      : null;
 
-  const validatePassKey = (e) => {
-    
-  }
+  useEffect(() => {
+    const accessKey = encryptedKey && decryptKey(encryptedKey);
+
+    if (path)
+      if (accessKey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY!.toString()) {
+        setOpen(false);
+        router.push("/admin");
+      } else {
+        setOpen(true);
+      }
+  }, [encryptedKey, router, path]);
+
 
   const closeModal = () => {
     setOpen(false);
     router.push("/");
   };
+
+  const validatePassKey = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.preventDefault();
+
+    if (passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+      const encrypted = encryptKey(passkey);
+
+      localStorage.setItem("adminPasskey", encrypted);
+      setError("");
+      closeModal();
+    } else {
+      setError("Invalid Passkey, Please Try again");
+    }
+  };
+
+ 
 
   return (
     <AlertDialog open={open} onOpenChange={setOpen}>

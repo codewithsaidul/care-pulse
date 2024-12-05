@@ -1,3 +1,4 @@
+import { StatCard } from "@/components/StatCard";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -20,18 +21,37 @@ const Admin = () => {
         <p className="text-16-semibold">Admin Dashboard</p>
       </header>
 
-
       {/* ============== Admin Dashboard  Main Content ===================== */}
       <main className="admin-main">
-
         {/* ===== Admin Dashboard Heding ===== */}
         <section className="w-full space-y-4">
-            <h1 className="header">Welcome 👋</h1>
-            <p className="text-dark-700">Start the day with managing new Appointments</p>
+          <h1 className="header">Welcome 👋</h1>
+          <p className="text-dark-700">
+            Start the day with managing new Appointments
+          </p>
         </section>
 
         {/* ===== Admin Dashboard Stat ===== */}
-        <section className="admin-stat"></section>
+        <section className="admin-stat">
+          <StatCard
+            type="appointments"
+            count={5}
+            label="Schedule Appointments"
+            icon="/assets/icons/appointments.svg"
+          />
+          <StatCard
+            type="pending"
+            count={10}
+            label="Pending Appointments"
+            icon="/assets/icons/pending.svg"
+          />
+          <StatCard
+            type="cancelled"
+            count={2}
+            label="Cancelled Appointments"
+            icon="/assets/icons/cancelled.svg"
+          />
+        </section>
       </main>
     </div>
   );

@@ -1,15 +1,21 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use server";
 
-
 import { ID, Query } from "node-appwrite";
-import {  databases, storage, users } from "../appwrite.config";
+import {
+  NEXT_PUBLIC_BUCKET_ID,
+  DATABASE_ID,
+  databases,
+  NEXT_PUBLIC_ENDPOINT,
+  PATIENT_COLLECTION_ID,
+  PROJECT_ID,
+  storage,
+  users,
+} from "../appwrite.config";
 import { parseStringify } from "../utils";
 import { InputFile } from "node-appwrite/file";
 
-
 export const createUser = async (user: CreateUserParams) => {
-
   try {
     const newUser = await users.create(
       ID.unique(),
@@ -28,16 +34,12 @@ export const createUser = async (user: CreateUserParams) => {
   }
 };
 
-
-
-
 // Register a New Patient
 export const registerPatient = async ({
   identificationDocument,
   ...patient
 }: RegisterUserParams) => {
   try {
-
     let file;
     if (identificationDocument) {
       const inputFile = InputFile.fromBuffer(
@@ -46,28 +48,24 @@ export const registerPatient = async ({
       );
 
       file = await storage.createFile(
-        process.env.NEXT_PUBLIC_BUCKET_ID!,
+        NEXT_PUBLIC_BUCKET_ID!,
         ID.unique(),
         inputFile
       );
     }
 
-
-
-
     const patientCollection = await databases.createDocument(
-      process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID!,
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!,
       ID.unique(),
       {
         identificationDocumentId: file?.$id ? file.$id : null,
         identificationDocumentUrl: file?.$id
-          ? `${process.env.NEXT_PUBLIC_ENDPOINT}/storage/buckets/${process.env.NEXT_PUBLIC_BUCKET_ID}/files/${file.$id}/view??project=${process.env.NEXT_PUBLIC_PROJECT_ID}`
+          ? `${NEXT_PUBLIC_ENDPOINT}/storage/buckets/${NEXT_PUBLIC_BUCKET_ID}/files/${file.$id}/view??project=${PROJECT_ID}`
           : null,
         ...patient,
       }
     );
-
 
     return parseStringify(patientCollection);
   } catch (error) {
@@ -75,9 +73,6 @@ export const registerPatient = async ({
   }
 };
 
-
-
-// Create a New Appointment 
 
 
 // Get the user
@@ -91,23 +86,17 @@ export const getUser = async (userId: string) => {
   }
 };
 
-
-
 // Get the Patient
 export const getPatient = async (userId: string) => {
   try {
     const patient = await databases.listDocuments(
-      process.env.NEXT_PUBLIC_DATABASE_ID!,
-      process.env.NEXT_PUBLIC_PATIENT_COLLECTION_ID!,
-      [
-        Query.equal('userId', userId)
-      ]
+      DATABASE_ID!,
+      PATIENT_COLLECTION_ID!,
+      [Query.equal("userId", userId)]
     );
-
 
     return parseStringify(patient.documents[0]);
   } catch (error) {
     console.log(error);
   }
 };
-

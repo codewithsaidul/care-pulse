@@ -2,10 +2,10 @@ import AppointmentForm from "@/components/forms/AppointmentForm";
 import { getPatient } from "@/lib/actions/patient.actions";
 // import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
+import Link from "next/link";
 
 const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
   const patient = await getPatient(userId);
-  console.log(patient)
 
   return (
     <div className="flex h-screen max-h-screen">
@@ -25,7 +25,16 @@ const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
             type="create"
           />
 
-          <p className="copyright py-12">&copy; 2025 Care Pulse</p>
+          <p className="copyright py-12">
+            &copy; 2025 Care Pulse by{" "}
+            <Link
+              href="https://www.facebook.com/codewithsaidul1"
+              target="_blank"
+              className="text-green-500"
+            >
+              CodeWithSaidul
+            </Link>
+          </p>
         </div>
       </section>
 

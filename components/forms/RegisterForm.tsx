@@ -22,7 +22,8 @@ import FileUploader from "../FileUploader";
 
 const RegisterForm = ({ user }: { user: User }) => {
 
-  const router = useRouter();
+console.log(user)  
+const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
 

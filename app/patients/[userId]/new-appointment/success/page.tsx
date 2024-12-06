@@ -17,7 +17,6 @@ const Sucess = async ({
   );
 
   const doctorImage = doctor?.image;
-  console.log(doctorImage);
 
   return (
     <div className="flex max-h-screen h-screen px-[5%]">

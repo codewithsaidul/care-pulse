@@ -21,7 +21,7 @@ import { Textarea } from "./ui/textarea";
 import { Checkbox } from "./ui/checkbox";
 
 interface CustomProps {
-  control: Control<any>;
+  control: Control<unknown>;
   fieldType: FormFieldType;
   name: string;
   label?: string;
@@ -32,10 +32,10 @@ interface CustomProps {
   dateFormat?: string;
   showTimeSelect?: boolean;
   children?: React.ReactNode;
-  renderSkeletons?: (field: any) => React.ReactNode;
+  renderSkeletons?: (field: unknown) => React.ReactNode;
 }
 
-const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
+const RenderField = ({ field, props }: { field: unknown; props: CustomProps }) => {
   const {
     fieldType,
     iconSrc,

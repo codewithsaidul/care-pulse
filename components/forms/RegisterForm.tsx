@@ -22,7 +22,6 @@ import FileUploader from "../FileUploader";
 
 const RegisterForm = ({ user }: { user: User }) => {
 
-console.log(user)  
 const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -32,7 +31,7 @@ const router = useRouter();
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       ...PatientFormDefaultValues,
-      name: user.name,
+      name: "",
       email: user.email,
       phone: user.phone,
     },
@@ -62,8 +61,6 @@ const router = useRouter();
 
     //@ts-expect-error nothing
     const patient = await registerPatient(patientData);
-
-
     if (patient) router.push(`/patients/${user.$id}/new-appointment`);
 
     

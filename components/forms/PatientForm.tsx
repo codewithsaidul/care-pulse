@@ -24,11 +24,11 @@ export enum FormFieldType {
   SKELETON = "skeleton",
 }
 
-const PatientForm = () => {
-
+const PatientForm =  () => {
   const router = useRouter();
 
   const [isLoading, setIsLoading] = useState(false);
+
 
   // 1. Define your form.
   const form = useForm<z.infer<typeof UserFormValidation>>({
@@ -48,15 +48,15 @@ const PatientForm = () => {
     try {
 
       // ========== User Data =============
-      const user = {
+      const userData = {
         name: values.name,
         email: values.email,
         phone: values.phone,
       };
 
-      const newUser = await createUser(user);
-
-      if (newUser) router.push(`/patients/${newUser.$id}/register`);
+      const user = await createUser(userData);
+      // console.log(newUser);
+      if (user) router.push(`/patients/${user.$id}/register`);
 
     } catch (err) {
       console.log(err);

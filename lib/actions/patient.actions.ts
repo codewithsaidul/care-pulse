@@ -17,6 +17,7 @@ import { InputFile } from "node-appwrite/file";
 
 export const createUser = async (user: CreateUserParams) => {
   try {
+
     const newUser = await users.create(
       ID.unique(),
       user?.email,
@@ -85,6 +86,8 @@ export const getUser = async (userId: string) => {
     console.log(error);
   }
 };
+
+
 
 // Get the Patient
 export const getPatient = async (userId: string) => {

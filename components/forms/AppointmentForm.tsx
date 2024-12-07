@@ -122,7 +122,7 @@ const AppointmentForm = ({
         console.log(updatedAppointment);
 
         if (updatedAppointment) {
-          setOpen! && setOpen(false);
+          setOpen(false);
           form.reset();
         }
       }

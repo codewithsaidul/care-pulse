@@ -20,7 +20,7 @@ import {
 } from "@/lib/actions/appointment.actions";
 import { useRouter } from "next/navigation";
 import { Appointment } from "@/types/appwrite.types";
-import DatePicker from "react-datepicker";
+
 
 const AppointmentForm = ({
   userId,
@@ -52,6 +52,7 @@ const AppointmentForm = ({
       cancellationReason:  appointment?.cancellationReason || "",
     },
   });
+
 
   // 2. Define a submit handler.
   const onSubmit = async (
@@ -120,7 +121,7 @@ const AppointmentForm = ({
         console.log(updatedAppointment);
 
         if (updatedAppointment) {
-          setOpen && setOpen(false);
+          setOpen! && setOpen(false);
           form.reset();
         }
       }

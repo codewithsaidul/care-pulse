@@ -8,9 +8,7 @@ import React from "react";
 
 
 
-interface Data {
-  documents?: string[];
-}
+
 
 const Admin = async () => {
 
@@ -48,19 +46,19 @@ const Admin = async () => {
         <section className="admin-stat">
           <StatCard
             type="appointments"
-            count={appointments.scheduleCount}
+            count={appointments?.scheduleCount ?? 0}
             label="Schedule Appointments"
             icon="/assets/icons/appointments.svg"
           />
           <StatCard
             type="pending"
-            count={appointments.pendingCount}
+            count={appointments?.pendingCount ?? 0}
             label="Pending Appointments"
             icon="/assets/icons/pending.svg"
           />
           <StatCard
             type="cancelled"
-            count={appointments.cancelledCount}
+            count={appointments?.cancelledCount ?? 0}
             label="Cancelled Appointments"
             icon="/assets/icons/cancelled.svg"
           />

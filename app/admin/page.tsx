@@ -8,7 +8,9 @@ import React from "react";
 
 
 
-
+interface Data {
+  documents?: string[];
+}
 
 const Admin = async () => {
 
@@ -66,7 +68,7 @@ const Admin = async () => {
 
 
         {/* ============== All Patient Data Table =================== */}
-        <DataTable columns={columns} data={appointments.documents} />
+        <DataTable columns={columns} data={appointments?.documents ?? null} />
       </main>
     </div>
   );

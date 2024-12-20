@@ -1,10 +1,14 @@
-import RegisterForm from "@/components/forms/RegisterForm";
-import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-const Register = async ({ params }: SearchParamProps) => {
-  const userId = params.userId;
+import RegisterForm from "@/components/forms/RegisterForm";
+import { getPatient, getUser } from "@/lib/actions/patient.actions";
+
+const Register = async ({ params: { userId } }: SearchParamProps) => {
   const user = await getUser(userId);
+  const patient = await getPatient(userId);
+
+  if (patient) redirect(`/patients/${userId}/new-appointment`);
 
   return (
     <div className="flex h-screen max-h-screen">
@@ -12,25 +16,23 @@ const Register = async ({ params }: SearchParamProps) => {
         <div className="sub-container max-w-[860px] flex-1 flex-col py-10">
           <Image
             src="/assets/icons/logo-full.svg"
-            alt="care pulse logo"
-            width={1000}
             height={1000}
+            width={1000}
+            alt="patient"
             className="mb-12 h-10 w-fit"
           />
 
           <RegisterForm user={user} />
 
-          <p className="copyright py-12">
-            &copy; 2025 Care Pulse
-          </p>
+          <p className="copyright py-12">© 2024 CarePluse</p>
         </div>
       </section>
 
       <Image
         src="/assets/images/register-img.png"
-        alt="onboarding image"
-        width={1000}
         height={1000}
+        width={1000}
+        alt="patient"
         className="side-img max-w-[390px]"
       />
     </div>

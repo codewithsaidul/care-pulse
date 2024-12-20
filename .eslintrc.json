@@ -1,10 +1,30 @@
 {
-  "extends": ["next/core-web-vitals", "next/typescript"],
+  "plugins": ["import"],
+  "extends": [
+    "next/core-web-vitals",
+    "standard",
+    "plugin:tailwindcss/recommended",
+    "prettier"
+  ],
   "rules": {
-  "@typescript-eslint/no-unused-vars": "off",
-   "@typescript-eslint/no-explicit-any": "off",
-   "react/no-unescaped-entities": "off",
-    "@next/next/no-page-custom-font": "off"
-}
-
+    "no-undef": "off",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index"
+        ],
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
+      }
+    ]
+  }
 }

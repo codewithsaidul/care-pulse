@@ -13,9 +13,9 @@ import {
 } from "@/components/ui/dialog";
 import { Appointment } from "@/types/appwrite.types";
 
+import { AppointmentForm } from "./forms/AppointmentForm";
 
 import "react-datepicker/dist/react-datepicker.css";
-import AppointmentForm from "./forms/AppointmentForm";
 
 export const AppointmentModal = ({
   patientId,
@@ -27,6 +27,8 @@ export const AppointmentModal = ({
   userId: string;
   appointment?: Appointment;
   type: "schedule" | "cancel";
+  title: string;
+  description: string;
 }) => {
   const [open, setOpen] = useState(false);
 

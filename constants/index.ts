@@ -1,4 +1,4 @@
-export const GenderOptions = ["male", "female", "other"];
+export const GenderOptions = ["Male", "Female", "Other"];
 
 export const PatientFormDefaultValues = {
   firstName: "",
@@ -55,7 +55,7 @@ export const Doctors = [
   },
   {
     image: "/assets/images/dr-peter.png",
-    name: "Evan Peter", 
+    name: "Evan Peter",
   },
   {
     image: "/assets/images/dr-powell.png",

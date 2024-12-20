@@ -1,21 +1,20 @@
-import AppointmentForm from "@/components/forms/AppointmentForm";
-import { getPatient } from "@/lib/actions/patient.actions";
-// import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
-import Link from "next/link";
 
-const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
+import { AppointmentForm } from "@/components/forms/AppointmentForm";
+import { getPatient } from "@/lib/actions/patient.actions";
+
+const Appointment = async ({ params: { userId } }: SearchParamProps) => {
   const patient = await getPatient(userId);
 
   return (
     <div className="flex h-screen max-h-screen">
-      <section className="remove-scrollbar container">
-        <div className="sub-container max-w-[860px] flex-1 flex-col py-10">
+      <section className="remove-scrollbar container my-auto">
+        <div className="sub-container max-w-[860px] flex-1 justify-between">
           <Image
             src="/assets/icons/logo-full.svg"
-            alt="care pulse logo"
-            width={1000}
             height={1000}
+            width={1000}
+            alt="logo"
             className="mb-12 h-10 w-fit"
           />
 
@@ -25,28 +24,19 @@ const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
             type="create"
           />
 
-          <p className="copyright py-12">
-            &copy; 2025 Care Pulse by{" "}
-            <Link
-              href="https://www.facebook.com/codewithsaidul1"
-              target="_blank"
-              className="text-green-500"
-            >
-              CodeWithSaidul
-            </Link>
-          </p>
+          <p className="copyright mt-10 py-12">© 2024 CarePluse</p>
         </div>
       </section>
 
       <Image
         src="/assets/images/appointment-img.png"
-        alt="onboarding image"
-        width={1000}
-        height={1000}
-        className="side-img max-w-[390px]"
+        height={1500}
+        width={1500}
+        alt="appointment"
+        className="side-img max-w-[390px] bg-bottom"
       />
     </div>
   );
 };
 
-export default NewAppointment;
+export default Appointment;

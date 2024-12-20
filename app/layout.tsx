@@ -1,22 +1,22 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-import { ThemeProvider } from "@/components/theme-provider";
+import { Plus_Jakarta_Sans as FontSans } from "next/font/google";
+import { ThemeProvider } from "next-themes";
 
-const fontSans = Plus_Jakarta_Sans({
+import { cn } from "@/lib/utils";
+
+const fontSans = FontSans({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
-  title: "Care Pulse",
-  description: "A Health Care Management System",
-  keywords: ["healthcare", "management", "system"],
+  title: "CarePulse",
+  description:
+    "A healthcare patient management System designed to streamline patient registration, appointment scheduling, and medical records management for healthcare providers.",
   icons: {
-    icon: "/favicon.ico", // Path to your favicon
-    apple: "/favicon.ico", // Optional for Apple touch icon
+    icon: "/assets/icons/logo-icon.svg",
   },
 };
 
@@ -33,10 +33,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-        >
+        <ThemeProvider attribute="class" defaultTheme="dark">
           {children}
         </ThemeProvider>
       </body>

@@ -1,8 +1,8 @@
 /* eslint-disable no-unused-vars */
 
 declare type SearchParamProps = {
-  params: Promise<{ [key: string]: string }>;
-  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+  params: { [key: string]: string };
+  searchParams: { [key: string]: string | string[] | undefined };
 };
 
 declare type Gender = "Male" | "Female" | "Other";

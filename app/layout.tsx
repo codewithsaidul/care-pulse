@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   description:
     "A healthcare patient management System designed to streamline patient registration, appointment scheduling, and medical records management for healthcare providers.",
   icons: {
-    icon: "/assets/icons/logo-icon.svg",
+    icon: "/favicon.ico",
   },
 };
 
@@ -33,7 +33,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           {children}
         </ThemeProvider>
       </body>

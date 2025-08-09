@@ -58,6 +58,7 @@ const RegisterForm = ({ user }: { user: User }) => {
       formData.append("fileName", values.identificationDocument[0].name);
     }
 
+
     try {
       const patient = {
         userId: user.$id,
@@ -82,8 +83,11 @@ const RegisterForm = ({ user }: { user: User }) => {
         identificationDocument: values.identificationDocument
           ? formData
           : undefined,
+        treatmentConsent: values.treatmentConsent, 
+        disclosureConsent: values.disclosureConsent,
         privacyConsent: values.privacyConsent,
       };
+
 
       const newPatient = await registerPatient(patient);
 

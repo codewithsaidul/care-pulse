@@ -53,6 +53,8 @@ export const AppointmentForm = ({
     },
   });
 
+  console.log(appointment)
+
   const onSubmit = async (
     values: z.infer<typeof AppointmentFormValidation>
   ) => {

@@ -85,15 +85,16 @@ Create a new file named `.env.local` in the root of your project and add the fol
 
 ```env
 #APPWRITE
-NEXT_PUBLIC_ENDPOINT=https://cloud.appwrite.io/v1
-PROJECT_ID=
-API_KEY=
-DATABASE_ID=
-PATIENT_COLLECTION_ID=
-APPOINTMENT_COLLECTION_ID=
-NEXT_PUBLIC_BUCKET_ID=
+NEXT_PUBLIC_ENDPOINT=your_appwrite_api_endpoint
+PROJECT_ID=your_appwrite_project_id
+API_KEY=your_appwrite_api_key
+DATABASE_ID=your_appwrite_database_id
+PATIENT_COLLECTION_ID=your_appwrite_PATIENT_COLLECTION_ID
+DOCTOR_COLLECTION_ID=your_appwrite_DOCTOR_COLLECTION_ID
+APPOINTMENT_COLLECTION_ID=your_appwrite_APPOINTMENT_COLLECTION_ID
+NEXT_PUBLIC_BUCKET_ID=your_appwrite_bucket_key
 
-NEXT_PUBLIC_ADMIN_PASSKEY=111111
+NEXT_PUBLIC_ADMIN_PASSKEY=your_admin_passkey
 ```
 
 Replace the placeholder values with your actual Appwrite credentials. You can obtain these credentials by signing up on the [Appwrite website](https://appwrite.io/).
